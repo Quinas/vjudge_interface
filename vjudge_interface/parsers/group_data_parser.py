@@ -1,9 +1,15 @@
 import bs4
 import json
 
+from .parser import Parser
 
-class GroupDataParser:
+
+class GroupDataParser(Parser):
     def parse(self, response):
+        error = self.parse_error(response)
+        if error is not None:
+            return error
+
         self.data = {}
         self.soup = bs4.BeautifulSoup(response.text, "html.parser")
         self.json_data = json.loads(

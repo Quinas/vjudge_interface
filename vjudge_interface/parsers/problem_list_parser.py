@@ -1,8 +1,10 @@
 import json
 import bs4
 
+from .parser import Parser
 
-class ProblemListParser:
+
+class ProblemListParser(Parser):
     """
     [
         {'username': 'user1', 'nickname': 'nick', 'school': 'myschool', 'solved': 0},
@@ -12,6 +14,10 @@ class ProblemListParser:
     """
 
     def parse(self, response):
+        error = self.parse_error(response)
+        if error is not None:
+            return error
+
         json_data = json.loads(response.text)
         data = []
 

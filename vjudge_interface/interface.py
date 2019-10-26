@@ -55,7 +55,7 @@ class VjudgeInterface:
             vjudge_resources.ContestList,
         )
 
-    def get_contest_data(self, contest_id: int):
+    def get_contest_data(self, contest_id: int, password: str = None):
         return self.obtain_resource(
             locals(),
             vjudge_requests.GetContestData,
@@ -109,6 +109,11 @@ class VjudgeInterface:
         filtered_args = {
             key: val for key, val in args.items() if val is not None and key != "self"
         }
-        return resource(
-            parser.parse(self.client.send_request(request(**filtered_args)))
-        )
+
+        response = self.client.send_request(request(**filtered_args))
+        parsed_data = parser.parse(response)
+
+        if "_error" in parsed_data:
+            return vjudge_resources.Error(parsed_data, self, request, parser, response)
+
+        return resource(parsed_data, self, request, parser, response)

@@ -1,9 +1,11 @@
 import json
 
+from .parser import Parser
+
 USER_ITEM_PARAMS = {"username": 1, "nickname": 2, "school": 3, "solved": 4}
 
 
-class UserListParser:
+class UserListParser(Parser):
     """
     [
         {'username': 'user1', 'nickname': 'nick', 'school': 'myschool', 'solved': 0},
@@ -13,6 +15,10 @@ class UserListParser:
     """
 
     def parse(self, response):
+        error = self.parse_error(response)
+        if error is not None:
+            return error
+
         json_data = json.loads(response.text)
         data = []
         for user in json_data["data"]:

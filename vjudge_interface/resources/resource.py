@@ -5,3 +5,4 @@ class Resource:
         self.vjudge_request = vjudge_request
         self.vjudge_parser = vjudge_parser
         self.response = response
+        self.is_error = False

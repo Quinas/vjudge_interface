@@ -1,5 +1,7 @@
 import json
 
+from .parser import Parser
+
 STATUS_ITEM_PARAMS = {
     "memory": "memory",
     "access": "access",
@@ -20,8 +22,12 @@ STATUS_ITEM_PARAMS = {
 }
 
 
-class StatusListParser:
+class StatusListParser(Parser):
     def parse(self, response):
+        error = self.parse_error(response)
+        if error is not None:
+            return error
+
         json_data = json.loads(response.text)
         data = []
         for status in json_data["data"]:

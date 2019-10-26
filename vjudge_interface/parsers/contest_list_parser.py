@@ -28,6 +28,10 @@ class ContestListParser:
     """
 
     def parse(self, response):
+        error = self.parse_error(response)
+        if error is not None:
+            return error
+
         json_data = json.loads(response.text)
         data = []
         for contest in json_data["data"]:

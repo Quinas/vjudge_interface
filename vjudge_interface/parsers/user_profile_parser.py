@@ -2,6 +2,8 @@ import bs4
 import re
 import string
 
+from .parser import Parser
+
 SOLVED_TABLE_PARAMS = [
     "solved_last_24_hours",
     "solved_last_7_days",
@@ -19,7 +21,7 @@ USER_INFO_PARAMS = {
 }
 
 
-class UserProfileParser:
+class UserProfileParser(Parser):
     """
     {
         'username': 'Quinas',
@@ -38,6 +40,10 @@ class UserProfileParser:
     """
 
     def parse(self, response):
+        error = self.parse_error(response)
+        if error is not None:
+            return error
+
         self.data = {}
         self.soup = bs4.BeautifulSoup(response.text, "html.parser")
         self._username()
