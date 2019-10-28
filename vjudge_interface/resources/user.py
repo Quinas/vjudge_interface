@@ -2,8 +2,8 @@ from .resource import Resource
 
 
 class UserProfile(Resource):
-    def __init__(self, parsed_data):
-        super().__init__(parsed_data)
+    def __init__(self, parsed_data, interface):
+        super().__init__(parsed_data, interface)
 
         self.username = parsed_data["username"]
         self.id = parsed_data["id"]
@@ -16,8 +16,8 @@ class UserProfile(Resource):
 
 
 class UserListItem(Resource):
-    def __init__(self, parsed_data):
-        super().__init__(parsed_data)
+    def __init__(self, parsed_data, interface):
+        super().__init__(parsed_data, interface)
 
         self.username = parsed_data["username"]
         self.nickname = parsed_data["nickname"]
@@ -26,9 +26,9 @@ class UserListItem(Resource):
 
 
 class UserList(Resource):
-    def __init__(self, parsed_data):
-        super().__init__(parsed_data)
+    def __init__(self, parsed_data, interface):
+        super().__init__(parsed_data, interface)
 
         self.users = []
         for user_data in parsed_data:
-            self.users.append(UserListItem(user_data))
+            self.users.append(UserListItem(user_data, interface))

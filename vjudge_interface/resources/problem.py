@@ -2,17 +2,13 @@ from .resource import Resource
 
 
 class ProblemData(Resource):
-    def __init__(self, parsed_data, interface, vjudge_request, vjudge_parser, response):
-        super().__init__(
-            parsed_data, interface, vjudge_request, vjudge_parser, response
-        )
+    def __init__(self, parsed_data, interface):
+        super().__init__(parsed_data, interface)
 
 
 class ProblemListItem(Resource):
-    def __init__(self, parsed_data, interface, vjudge_request, vjudge_parser, response):
-        super().__init__(
-            parsed_data, interface, vjudge_request, vjudge_parser, response
-        )
+    def __init__(self, parsed_data, interface):
+        super().__init__(parsed_data, interface)
 
         self.id = parsed_data["id"]
         self.title = parsed_data["title"]
@@ -28,15 +24,9 @@ class ProblemListItem(Resource):
 
 
 class ProblemList(Resource):
-    def __init__(self, parsed_data, interface, vjudge_request, vjudge_parser, response):
-        super().__init__(
-            parsed_data, interface, vjudge_request, vjudge_parser, response
-        )
+    def __init__(self, parsed_data, interface):
+        super().__init__(parsed_data, interface)
 
         problems = []
         for problem_data in parsed_data:
-            problems.append(
-                ProblemListItem(
-                    problem_data, interface, vjudge_request, vjudge_parser, response
-                )
-            )
+            problems.append(ProblemListItem(problem_data, interface))

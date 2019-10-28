@@ -14,6 +14,8 @@ class GetContestList(Request):
         order_direction: OrderDirection = OrderDirection.DESCENDING,
         order_by: ContestListOrderBy = ContestListOrderBy.ID,
     ):
+        super().__init__()
+
         self.start = start
         self.length = length
         self.title = title
@@ -25,7 +27,6 @@ class GetContestList(Request):
 
         self.path = "contest/data"
         self.method = "post"
-        self.timeout = 5000
 
     def get_params(self):
         return {

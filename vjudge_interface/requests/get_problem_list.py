@@ -20,6 +20,8 @@ class GetProblemList(Request):
         order_direction: OrderDirection = OrderDirection.DESCENDING,
         order_by: ProblemListOrderBy = ProblemListOrderBy.UPDATE_TIME,
     ):
+        super().__init__()
+
         self.start = start
         self.length = length
         self.OJ = OJ.value
@@ -32,7 +34,6 @@ class GetProblemList(Request):
 
         self.path = "problem/data"
         self.method = "post"
-        self.timeout = 5000
 
     def get_params(self):
         return {

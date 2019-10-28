@@ -1,5 +1,7 @@
 import json
 
+from .parser import Parser
+
 CONTEST_ITEM_PARAMS = {
     "id": 0,
     "title": 1,
@@ -18,7 +20,7 @@ CONTEST_ITEM_PARAMS = {
 }
 
 
-class ContestListParser:
+class ContestListParser(Parser):
     """
     [
         {'username': 'user1', 'nickname': 'nick', 'school': 'myschool', 'solved': 0},

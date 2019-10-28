@@ -2,17 +2,13 @@ from .resource import Resource
 
 
 class StatusData(Resource):
-    def __init__(self, parsed_data, interface, vjudge_request, vjudge_parser, response):
-        super().__init__(
-            parsed_data, interface, vjudge_request, vjudge_parser, response
-        )
+    def __init__(self, parsed_data, interface):
+        super().__init__(parsed_data, interface)
 
 
 class StatusListItem(Resource):
-    def __init__(self, parsed_data, interface, vjudge_request, vjudge_parser, response):
-        super().__init__(
-            parsed_data, interface, vjudge_request, vjudge_parser, response
-        )
+    def __init__(self, parsed_data, interface):
+        super().__init__(parsed_data, interface)
 
         self.memory = parsed_data["memory"]
         self.access = parsed_data["access"]
@@ -33,15 +29,9 @@ class StatusListItem(Resource):
 
 
 class StatusList(Resource):
-    def __init__(self, parsed_data, interface, vjudge_request, vjudge_parser, response):
-        super().__init__(
-            parsed_data, interface, vjudge_request, vjudge_parser, response
-        )
+    def __init__(self, parsed_data, interface):
+        super().__init__(parsed_data, interface)
 
-        status = []
+        self.status = []
         for status_data in parsed_data:
-            status.append(
-                StatusListItem(
-                    status_data, interface, vjudge_request, vjudge_parser, response
-                )
-            )
+            self.status.append(StatusListItem(status_data, interface))

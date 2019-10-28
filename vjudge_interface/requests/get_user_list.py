@@ -12,6 +12,8 @@ class GetUserList(Request):
         school: str = "",
         time_range: TimeRange = TimeRange.TIME_24HOURS,
     ):
+        super().__init__()
+
         self.start = start
         self.length = length
         self.username = username
@@ -21,7 +23,6 @@ class GetUserList(Request):
 
         self.path = "user/data"
         self.method = "post"
-        self.timeout = 5000
 
     def get_params(self):
         return {
