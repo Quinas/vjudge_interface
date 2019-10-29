@@ -33,7 +33,7 @@ class ContestData(Resource):
         self.is_replay = parsed_data["rank"]["is_replay"]
         self.submissions = []
         for submission in parsed_data["rank"]["submissions"]:
-            self.submissions.append(ContestSubmission(submission, interface, self))
+            self.submissions.append(ContestRankSubmission(submission, interface, self))
 
         self.participants = []
         for user_id in parsed_data["rank"]["participants"]:
@@ -53,8 +53,8 @@ class ContestData(Resource):
 
     def get_contest_status(
         self,
-        start: int = None,
-        length: int = None,
+        start: int = 0,
+        length: int = 10000,
         username: str = None,
         OJ: vjudge_requests.constants.OnlineJudge = None,
         problem: str = None,
@@ -143,7 +143,7 @@ class ContestUser(Resource):
         return 0
 
 
-class ContestSubmission(Resource):
+class ContestRankSubmission(Resource):
     def __init__(self, parsed_data, interface, contest):
         super().__init__(parsed_data, interface)
 

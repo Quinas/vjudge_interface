@@ -109,6 +109,12 @@ class VjudgeInterface:
         )
         return self.initialize_resource(parsed_data, vresources.ProblemList)
 
+    def get_status_data(self, status_data_id: int):
+        parsed_data = self.request_and_parse(
+            locals(), vrequests.GetStatusData, vparsers.StatusDataParser(status_data_id)
+        )
+        return self.initialize_resource(parsed_data, vresources.StatusData)
+
     def request_and_parse(self, args, request, parser):
         filtered_args = {
             key: val for key, val in args.items() if val is not None and key != "self"

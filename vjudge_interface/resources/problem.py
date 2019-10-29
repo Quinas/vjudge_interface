@@ -7,9 +7,10 @@ class ProblemData(Resource):
 
 
 class ProblemListItem(Resource):
-    def __init__(self, parsed_data, interface):
+    def __init__(self, parsed_data, interface, problem_list):
         super().__init__(parsed_data, interface)
 
+        self.problem_list = problem_list
         self.id = parsed_data["id"]
         self.title = parsed_data["title"]
         self.OJ = parsed_data["OJ"]
@@ -29,4 +30,4 @@ class ProblemList(Resource):
 
         problems = []
         for problem_data in parsed_data:
-            problems.append(ProblemListItem(problem_data, interface))
+            problems.append(ProblemListItem(problem_data, interface, self))

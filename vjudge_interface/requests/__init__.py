@@ -7,3 +7,4 @@ from .get_status_list import GetStatusList
 from .get_group_data import GetGroupData
 from .get_problem_list import GetProblemList
 from .login_contest import LoginContest
+from .get_status_data import GetStatusData
