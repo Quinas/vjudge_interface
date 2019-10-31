@@ -5,6 +5,12 @@ class ProblemData(Resource):
     def __init__(self, parsed_data, interface):
         super().__init__(parsed_data, interface)
 
+        self.id = parsed_data["id"]
+        self.is_favorite = parsed_data["is_favorite"]
+        self.allow_submit = parsed_data["allow_submit"]
+        self.status = parsed_data["status"]
+        self.properties = parsed_data["properties"]
+
 
 class ProblemListItem(Resource):
     def __init__(self, parsed_data, interface, problem_list):
@@ -22,6 +28,9 @@ class ProblemListItem(Resource):
         self.status = parsed_data["status"]
         self.href = "https://vjudge.net/problem/{}".format(self.id)
         self.origin_href = "https://vjudge.net/problem/{}/origin".format(self.id)
+
+    def get_problem_data(self):
+        return self.interface.get_problem_data(self.id)
 
 
 class ProblemList(Resource):

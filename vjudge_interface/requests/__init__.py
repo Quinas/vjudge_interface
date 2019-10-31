@@ -8,3 +8,4 @@ from .get_group_data import GetGroupData
 from .get_problem_list import GetProblemList
 from .login_contest import LoginContest
 from .get_status_data import GetStatusData
+from .get_problem_data import GetProblemData
