@@ -1,2 +1,2 @@
 # vjudge-interface
-Python interface for vjude.net
+Python interface for vjudge.net
