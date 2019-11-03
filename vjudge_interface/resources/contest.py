@@ -168,7 +168,7 @@ class ContestListItem(Resource):
         self.title = parsed_data["title"]
         self.begin_time = parsed_data["begin_time"]
         self.end_time = parsed_data["end_time"]
-        self.opennes = parsed_data["openness"]
+        self.openness = parsed_data["openness"]
         self.owner = parsed_data["owner"]
         self.owner_id = parsed_data["owner_id"]
         self.group_name = parsed_data["group_name"]
@@ -178,6 +178,9 @@ class ContestListItem(Resource):
         self.is_group_manager = parsed_data["is_group_manager"]
         self.is_contest_manager = parsed_data["is_contest_manager"]
         self.contestants_number = parsed_data["contestants_number"]
+
+    def get_contest_data(self, password=None):
+        return self.interface.get_contest_data(self.id, password)
 
 
 class ContestList(Resource):
