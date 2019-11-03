@@ -8,5 +8,5 @@ setup(
     author_email="pablomaster9@gmail.com",
     description="Python interface for vjudge.net",
     packages=find_packages(),
-    install_requires=["requests_html >= 2.22"],
+    install_requires=["requests_html >= 0.10"],
 )
