@@ -184,6 +184,6 @@ class ContestList(Resource):
     def __init__(self, parsed_data, interface):
         super().__init__(parsed_data, interface)
 
-        contests = []
+        self.contests = []
         for contest_data in parsed_data:
-            contests.append(ContestListItem(contest_data, interface, self))
+            self.contests.append(ContestListItem(contest_data, interface, self))
