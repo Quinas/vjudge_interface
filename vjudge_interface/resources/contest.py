@@ -54,7 +54,7 @@ class ContestData(Resource):
     def get_contest_status(
         self,
         start: int = 0,
-        length: int = 10000,
+        length: int = 20,
         username: str = None,
         OJ: vjudge_requests.constants.OnlineJudge = None,
         problem: str = None,
@@ -125,7 +125,7 @@ class ContestUser(Resource):
         self.contest_id = contest.id
         self.user_id = parsed_data["user_id"]
         self.username = parsed_data["username"]
-        self.nickanme = parsed_data["nickname"]
+        self.nickname = parsed_data["nickname"]
         self.submissions = submissions
         self.accepted = sum(s.status == 1 for s in self.submissions)
         self.failed = sum(s.status == 0 for s in self.submissions)

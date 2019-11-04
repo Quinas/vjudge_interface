@@ -109,9 +109,9 @@ class VjudgeInterface:
         )
         return self.initialize_resource(parsed_data, vresources.ProblemList)
 
-    def get_status_data(self, status_data_id: int):
+    def get_status_data(self, status_id: int):
         parsed_data = self.request_and_parse(
-            locals(), vrequests.GetStatusData, vparsers.StatusDataParser(status_data_id)
+            locals(), vrequests.GetStatusData, vparsers.StatusDataParser(status_id)
         )
         return self.initialize_resource(parsed_data, vresources.StatusData)
 
