@@ -51,10 +51,10 @@ class ContestData(Resource):
                 )
             )
 
-    def get_contest_status(
+    def get_status_list(
         self,
-        start: int = 0,
-        length: int = 20,
+        start: int = None,
+        length: int = None,
         username: str = None,
         OJ: vjudge_requests.constants.OnlineJudge = None,
         problem: str = None,
@@ -181,6 +181,18 @@ class ContestListItem(Resource):
 
     def get_contest_data(self, password=None):
         return self.interface.get_contest_data(self.id, password)
+
+    def get_status_list(
+        self,
+        start: int = None,
+        length: int = None,
+        username: str = None,
+        OJ: vjudge_requests.constants.OnlineJudge = None,
+        problem: str = None,
+        result: vjudge_requests.constants.Result = None,
+        language: vjudge_requests.constants.Language = None,
+    ):
+        return self.interface.get_status_list(contest_id=self.id)
 
 
 class ContestList(Resource):
