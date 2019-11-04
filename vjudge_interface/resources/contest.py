@@ -192,7 +192,17 @@ class ContestListItem(Resource):
         result: vjudge_requests.constants.Result = None,
         language: vjudge_requests.constants.Language = None,
     ):
-        return self.interface.get_status_list(contest_id=self.id)
+        return self.interface.get_status_list(
+            start=start,
+            length=length,
+            username=username,
+            contest_id=self.id,
+            OJ=OJ,
+            problem=problem,
+            result=result,
+            language=language,
+            in_contest=True,
+        )
 
 
 class ContestList(Resource):
