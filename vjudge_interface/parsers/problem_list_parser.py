@@ -14,9 +14,7 @@ class ProblemListParser(Parser):
     """
 
     def parse(self, response):
-        error = self.parse_error(response)
-        if error is not None:
-            return error
+        self.parse_error(response)
 
         json_data = json.loads(response.text)
         data = []

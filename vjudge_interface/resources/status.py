@@ -49,6 +49,7 @@ class StatusListItem(Resource):
         self.source_length = parsed_data["source_length"]
         self.problem_number = parsed_data["problem_number"]
         self.status = parsed_data["status"]
+        self.status_canonical = parsed_data["status_canonical"]
 
     def get_status_data(self):
         return self.interface.get_status_data(self.status_id)

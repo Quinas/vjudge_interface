@@ -37,16 +37,14 @@ CONTEST_RANK_PARAMS = {
 
 class ContestDataParser(Parser):
     def parse(self, response):
-        error = self.parse_error(response)
-        if error is not None:
-            return error
+        self.parse_error(response)
 
         self.data = {}
         self.soup = bs4.BeautifulSoup(response.text, "html.parser")
 
         password_input = self.soup.find("input", id="contest-login-password")
         if password_input is not None:
-            return {"_error": "You don't have access to view the contest."}
+            raise PermissionError("You don't have access to view the contest.")
 
         self.json_data = json.loads(
             self.soup.find("textarea", {"name": "dataJson"}).text
@@ -63,16 +61,9 @@ class ContestDataParser(Parser):
 
 class ContestRankParser(Parser):
     def parse(self, response):
-        error = self.parse_error(response)
-        if error is not None:
-            return error
+        self.parse_error(response)
 
-        try:
-            json_data = json.loads(response.text)
-        except ValueError:
-            return {
-                "_error": "Invalid response (do you have access to view this contest?)"
-            }
+        json_data = json.loads(response.text)
 
         data = {}
         for key, field in CONTEST_RANK_PARAMS.items():

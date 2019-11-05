@@ -62,10 +62,6 @@ class VjudgeInterface:
         )
 
         parsed_data = {"data": data, "rank": rank}
-        if "_error" in data:
-            parsed_data["_error"] = data["_error"]
-        elif "_error" in rank:
-            parsed_data["_error"] = rank["_error"]
 
         return self.initialize_resource(parsed_data, vresources.ContestData)
 
@@ -132,7 +128,4 @@ class VjudgeInterface:
         return parsed_data
 
     def initialize_resource(self, parsed_data, resource):
-        if "_error" in parsed_data:
-            return vresources.Error(parsed_data, self)
-
         return resource(parsed_data, self)

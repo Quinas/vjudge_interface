@@ -6,9 +6,7 @@ from .parser import Parser
 
 class GroupDataParser(Parser):
     def parse(self, response):
-        error = self.parse_error(response)
-        if error is not None:
-            return error
+        self.parse_error(response)
 
         self.data = {}
         self.soup = bs4.BeautifulSoup(response.text, "html.parser")

@@ -6,7 +6,6 @@ class Parser:
         try:
             json_data = json.loads(response.text)
             if "error" in json_data:
-                return {"_error": json_data["error"]}
-            return None
+                raise RuntimeError(json_data["error"])
         except:
-            return None
+            pass
