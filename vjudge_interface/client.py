@@ -34,6 +34,7 @@ class ApiClient:
     def login(self, username, password):
         self.username = username
         self.password = password
+        self.session.cookies.clear()
         self.send_request(vrequests.Login(self.username, self.password))
 
     def __get_url(self, request):
